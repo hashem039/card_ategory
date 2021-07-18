@@ -5,7 +5,6 @@
 import 'package:card_ategory/unit.dart';
 import 'package:flutter/material.dart';
 
-
 import 'category.dart';
 
 final _backgroundColor = Colors.green[100];
@@ -103,10 +102,43 @@ class _CategoryRouteState extends State<CategoryRoute> {
       centerTitle: true,
       backgroundColor: _backgroundColor,
     );
-
+   double _value = 88;
     return Scaffold(
       appBar: appBar,
-      body: listView,
+      body: Column(
+        children: [
+          Slider(
+            min: 0,
+            max: 100,
+            value: _value,
+            divisions: 10,
+            label: 'Set volume value',
+            activeColor: Colors.green,
+            inactiveColor: Colors.red,
+            onChanged: (double newValue) {
+              setState(() {
+                _value = newValue;
+              });
+            },
+          ),
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              style: Theme.of(context).textTheme.display1,
+              decoration: InputDecoration(
+                labelText: "Hey lable text here",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                )
+                //labelStyle: "hey lable style here"
+              ),
+
+            ),
+          ),
+          Expanded(child: listView),
+        ],
+      ),
     );
   }
 }
