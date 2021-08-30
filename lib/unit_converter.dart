@@ -242,10 +242,27 @@ class _UnitConverterState extends State<UnitConverter> {
         output,
       ],
     );
-
+// based on the orientation of the parent widget, figure out how the best to layout our converter
     return Padding(
       padding: _padding,
-      child: converter,
+      child: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+          if (orientation == Orientation.portrait) {
+            return SingleChildScrollView(
+              child: converter,
+            );
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           } else {
+            return SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  width: 450.0,
+                  child: converter,
+                ),
+              ),
+            );
+          }
+        },
+      )
     );
   }
 }
